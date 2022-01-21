@@ -5,10 +5,31 @@
 > 虽千万人，吾往矣！  
 > 愿这一刻，时雪洗去尘垢，惠风拂走阴翳。沐浴和煦阳光，聆听万物呼吸。时光酿成甘酒，属于每一个正奋斗抉择的你。  
 >
-> 祝你新年快乐。
+> **祝你新年快乐。**
 >
 > ——《南方周末》
 
 ## 制作组
 
+[秋のかえで](https://github.com/AkinoKaede)
+
+[双霖](https://github.com/linesoft2)
+
+[HIMlaoS_Misa](https://github.com/MisaLiu)
+
+[莳昇](https://github.com/ShiSheng233)
+
+[Usamoi](https://github.com/usamoi)
+
+
 ## 感谢
+
+感谢所有参与 Hello-2022 筹备的朋友
+
+感谢所有参加本次游戏的朋友
+
+
+
+---
+
+Made by [秋のかえで](https://github.com/AkinoKaede) & [双霖](https://github.com/linesoft2) & [HIMlaoS_Misa](https://github.com/MisaLiu) & [莳昇](https://github.com/ShiSheng233) & [Usamoi](https://github.com/usamoi) with Love ❤️.
