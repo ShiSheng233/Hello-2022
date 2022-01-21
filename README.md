@@ -28,6 +28,8 @@
 
 感谢所有参加本次游戏的朋友
 
+感谢 [Keiko](https://majokeiko.com) 提供服务器资源
+
 
 
 ---
