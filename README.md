@@ -17,7 +17,11 @@
 
 [HIMlaoS_Misa](https://github.com/MisaLiu)
 
+[Shelling](https://github.com/cjybyjk)
+
 [莳昇](https://github.com/ShiSheng233)
+
+[trrbivial](https://github.com/trrbivial)
 
 [Usamoi](https://github.com/usamoi)
 
@@ -30,8 +34,12 @@
 
 感谢 [Keiko](https://majokeiko.com) 提供服务器资源
 
+<img src="https://p.itxe.net/images/2022/01/23/Snipaste_2022-01-23_11-48-05.png" alt="Thank you!" style="zoom:50%;" />
+
 
 
 ---
 
-Made by [秋のかえで](https://github.com/AkinoKaede) & [双霖](https://github.com/linesoft2) & [HIMlaoS_Misa](https://github.com/MisaLiu) & [莳昇](https://github.com/ShiSheng233) & [Usamoi](https://github.com/usamoi) with Love ❤️.
+Made by [秋のかえで](https://github.com/AkinoKaede) & [双霖](https://github.com/linesoft2) & [HIMlaoS_Misa](https://github.com/MisaLiu) & [Shelling](https://github.com/cjybyjk) & [莳昇](https://github.com/ShiSheng233) & [trrbivial](https://github.com/trrbivial) & [Usamoi](https://github.com/usamoi) with Love ❤️.
+
+Licensed under the MIT License.
