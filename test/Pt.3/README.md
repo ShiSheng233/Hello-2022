@@ -56,6 +56,8 @@ $\overset{\frown} {TUV}$ 为监控摄像头 (不会转动)
 
 求 从 B点出发 接到 XiaoMengXin 并获取到 *佩嘉西 暴君 MK2* 的最短路径长即为*捆绑 XiaoMengXin 的锁的密码* `b`
 
+**四舍五入**
+
 ---
 
 先计算 `tmp = a` **<font color=red>XOR</font>** `b`
