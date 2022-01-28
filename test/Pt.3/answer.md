@@ -17,3 +17,11 @@
 ![](img/answer/part2.png)
 
 同时提供 ggb 工程文件 [test2.ggb](img/answer/test2.ggb) , 在 GeoGebra 中导入即可
+
+测量得到 `b = 9`
+
+## 答案
+
+`tmp = 1919819`
+
+得到答案 `flag{65655023DBF0535D4B6BFEA0C8D83E5D}`

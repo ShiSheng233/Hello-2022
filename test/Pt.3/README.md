@@ -60,4 +60,4 @@ $\overset{\frown} {TUV}$ 为监控摄像头 (不会转动)
 
 先计算 `tmp = a` **<font color=red>XOR</font>** `b`
 
-提交 `flag{md5($tmp)}`
+提交 `flag{md5($tmp + 1)}`
