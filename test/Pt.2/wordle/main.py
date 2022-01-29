@@ -135,7 +135,7 @@ def guess(word):
     elif word not in words_list:
         result_map['result'] = 2
     else:
-        if (len(session.get('tries')) >= 6):
+        if (len(session.get('tries')) >= 6 or session.get('game_over')):
             result_map['result'] = -1 # game over
         else:
             result_map['char_stat'] = guess_word(word)
