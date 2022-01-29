@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>The Wordle Challenge</title>
+    <link href="static/css/main.css" rel="stylesheet" type="text/css" />
+    <script>
+        var current_guess_cnt = {{guess_cnt}};
+        var isRequesting = false;
+        var isGuessed = {{is_guessed}} || current_guess_cnt >= 6;
+    </script>
+    <script src="static/js/user-interface.js" lang="javascript"></script>
+    <script>
+        function guess() {
+            if (isRequesting || isGuessed) return;
+            var word = "";
+            var nodes = document.getElementById("guess_" + current_guess_cnt).getElementsByTagName("td");
+            for (var i = 0; i < nodes.length; i++) {
+                word += nodes[i].innerText;
+            }
+            if (word.length != 5) {
+                alert("must be 5 characters");
+                return;
+            }
+            for (var i = 0; i < word.length; i++) {
+                if (word[i] < 'A' || word[i] > 'Z') {
+                    alert("illegal character");
+                    return;
+                }
+            }
+            var request = new XMLHttpRequest();
+            if (request == null) {
+                alert("你的浏览器不支持 XMLHttpRequest");
+                return;
+            }
+            request.responseType = "json"
+            request.onload = function() {
+                if (request.status == 200) {
+                    processResult(request.response)
+                } else {
+                    alert("发生错误");
+                }
+                isRequesting = false;
+            }
+            request.open('GET', '/guess/' + word);
+            isRequesting = true;
+            request.send();
+        }
+
+        function processResult(result) {
+            if (result.result == -1) {
+                alert("game over!")
+                return;
+            } else if (result.result == 2) {
+                alert("not in word list");
+                return;
+            } else if (result.result == 3) {
+                alert("单词已更新");
+                location.reload();
+                return;
+            }
+            var nodes = document.getElementById("guess_" + current_guess_cnt).getElementsByTagName("td");
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].className = result.char_stat[i];
+            }
+            current_guess_cnt++;
+            if (result.result == 1) {
+                alert("tql!");
+            } else if (current_guess_cnt >= 6) {
+                alert("Game Over!");
+            }
+            if (result.result == 1 || current_guess_cnt >= 6) location.reload();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">The Wordle Challenge</div>
+        {% autoescape false %}
+        <div class="flag_msg">{{ msg }}</div>
+        {% endautoescape %}
+        <div class="flag_msg">Next word: {{ next_word }}</div>
+        <div id="guess_result">
+            <table id="guess">
+                {% for row in guess_rows %}
+                <tr id="guess_{{loop.index0}}">
+                    {% for elem in row %}
+                    <td class="{{elem[1]}}">{{ elem[0] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <hr class="splitline" />
+        <table id="buttons">
+            <tr>
+                <td class="button">Q</td>
+                <td class="button">W</td>
+                <td class="button">E</td>
+                <td class="button">R</td>
+                <td class="button">T</td>
+                <td class="button">Y</td>
+                <td class="button">U</td>
+                <td class="button">I</td>
+                <td class="button">O</td>
+                <td class="button">P</td>
+            </tr>
+            <tr>
+                <td class="button">A</td>
+                <td class="button">S</td>
+                <td class="button">D</td>
+                <td class="button">F</td>
+                <td class="button">G</td>
+                <td class="button">H</td>
+                <td class="button">J</td>
+                <td class="button">K</td>
+                <td class="button">L</td>
+                <td class="button">↵</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="button">Z</td>
+                <td class="button">X</td>
+                <td class="button">C</td>
+                <td class="button">V</td>
+                <td class="button">B</td>
+                <td class="button">N</td>
+                <td class="button">M</td>
+                <td class="button">⇦</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+<!-- Flask is good! -->
+</html>

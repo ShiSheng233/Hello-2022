@@ -13,11 +13,11 @@ Shelling 最近迷上了 Wordle，这是一种字迷游戏，玩家需要在六�
 > 
 > I'm glad to invite you to take part in [The Wordle Challenge](the_url_to_server).
 > 
-> The challenge will start on [date_start] and end on [date_start]
+> The challenge will start on [date_start] and end on [date_end]
 > 
-> Participants need to guess 300 correct words in a row. The first 100 participants who complete the challenge will receive 1 flag and 1 bitcoin as rewards 
+> Participants need to guess 300 words in a row. The first 100 participants who complete the challenge will receive 1 flag and 1 bitcoin as rewards 
 > 
-> Unlike the original Wordle game, this Wordle version will update words every hour for challenges
+> Unlike the original Wordle game, this Wordle version will update words every 10 minutes for challenges
 > 
 > Can you complete this challenge? meow~ 
 

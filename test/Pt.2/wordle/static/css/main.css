@@ -1,0 +1,75 @@
+.title {
+    background: lightblue;
+    text-align: center;
+    line-height: 3em;
+    margin: auto;
+}
+
+.flag_msg {
+    text-align: center;
+    line-height: 2em;
+    margin: auto;
+}
+
+.splitline {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.main {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+#buttons {
+    margin: auto;
+}
+
+.button {
+    width: 24px;
+    height: 32px;
+    padding: 8px;
+    text-align: center;
+    background: rgba(100, 100, 100, 0.1);
+}
+
+.button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#guess {
+    padding: 8px;
+    font-size: 1.5em;
+    margin: auto;
+    text-align: center;
+}
+
+#guess td {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    text-align: center;
+    border: 2px solid rgba(100, 100, 100, 0.3);
+}
+
+#guess .right {
+    background: #6aaa64;
+    color: white;
+}
+
+#guess .present {
+    background: #c9b458;
+    color: white;
+}
+
+#guess .absent {
+    background: #86888a;
+    color: white;
+}
