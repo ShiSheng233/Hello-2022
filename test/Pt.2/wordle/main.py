@@ -8,8 +8,7 @@ import datetime
 from threading import Timer
 from flask import Flask, request, abort, g, jsonify, session, render_template, redirect
 
-app = Flask(__name__, template_folder='./static/templates')
-app.config.from_json('settings.json')
+app = Flask(__name__)
 
 # 一个简单的，能被 https://github.com/Paradoxis/Flask-Unsign 爆破的key
 app.secret_key = '123456'
@@ -155,10 +154,8 @@ def guess(word):
 
     return jsonify(result_map)
 
+init_words_list()
+get_new_word()
+
 if __name__ == '__main__':
-    init_words_list()
-    get_new_word()
-    if app.config.get('USE_SSL'):
-        app.run(debug=False, port=app.config.get('PORT'), ssl_context=(app.config.get('SSL_CERT'), app.config.get('SSL_KEY')))
-    else:
-        app.run(debug=False, port=app.config.get('PORT'))       
+    app.run(debug=False, port=2333)       

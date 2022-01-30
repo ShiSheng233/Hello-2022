@@ -6,15 +6,11 @@
 
 ![图1](assets/img1.png)
 
-通过查看 HTTP 响应头可以发现服务器是 `Werkzeug/2.0.2 Python/3.10.2`
-
-![图2](assets/img2.png)
-
 推测出这是用 Flask 编写的，而~~众所周知~~ Flask 会将**签名但不加密**的 session 存储在客户端的 cookie 里
 
 参考[这篇博客](https://www.leavesongs.com/PENETRATION/client-session-security.html)，将浏览器 cookie 中的 session 放到文中的 Python 脚本里解码，会发现 session 其实是一个编码后的 json 字符串
 
-![图3](assets/img3.png)
+![图2](assets/img2.png)
 
 注意到 session 中的 `level` 就是我们的等级。由于 Flask 是完全将 session 保存在客户端的，所以我们可以试着把它改成大等于 `300` 的值
 

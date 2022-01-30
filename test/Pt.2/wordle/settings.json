@@ -1,7 +1,0 @@
-{
-    "DATABASE": "database.db",
-    "PORT": 2333,
-    "USE_SSL": false,
-    "SSL_CERT": "your_path/server.crt",
-    "SSL_KEY": "your_path/server.key"
-} 
