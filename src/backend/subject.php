@@ -31,13 +31,13 @@
 		}
 		
 		$db->where('id', $_GET['id'] + 0);
-		$subject = $db->get('subjects', 1, array('title', 'description', 'rawHtml', 'score'));
+		$subject = $db->getOne('subjects');
 		
 		if ($subject) {
 			$return['msg']  = '';
 			$return['code'] = 200;
 			
-			$return['data'] = $subject[0];
+			$return['data'] = $subject;
 			
 		} else {
 			$return['msg']  = '不存在该题目！';
