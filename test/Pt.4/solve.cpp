@@ -66,8 +66,12 @@ int main(){
             }
         }
     }
+    ll su=0;
     for(int i=1;i<=16;i++){
+        su^=ans[i];
         cout<<ans[i]<<' ';
     }cout<<'\n';
+    
+    cout<<su<<'\n';
     return 0;
 }
