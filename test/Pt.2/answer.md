@@ -16,7 +16,7 @@
 
 ![图3](assets/img3.png)
 
-注意到 session 中的 `level` 就是我们的等级。由于 Flask 是完全将 session 保存在客户端的，所以我们可以试着把它改成大等于 `600` 的值
+注意到 session 中的 `level` 就是我们的等级。由于 Flask 是完全将 session 保存在客户端的，所以我们可以试着把它改成大等于 `300` 的值
 
 但是 Flask 在生成 session 之后会对其进行签名，如果只修改了数据，就会导致校验不通过。
 
