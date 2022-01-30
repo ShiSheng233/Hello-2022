@@ -47,7 +47,7 @@
                     return
                 }
                 this.date = (new Date(this.page*1000)).toString()
-                axios.get('/flag', {
+                axios.get('/api/flag', {
                     params: {
                         token: token,
                         page: this.page
