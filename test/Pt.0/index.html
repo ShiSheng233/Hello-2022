@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FLAG 记录集</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <h1>FLAG 记录集</h1>
+    <p>Page {{page}}</p>
+    <hr>
+    <p>时间：{{date}}</p>
+    <p v-if="flag">flag是 {{flag}}</p>
+    <p v-else>tnnd, 跟我玩阴的是吧</p>
+    <hr>
+    <a :href="'#'+(page-1)">上一页</a>
+    <a :href="'#'+(page+1)">下一页</a>
+
+
+</div>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            page: 0,
+            date:"",
+            flag:""
+        },
+        mounted() {
+            var token
+
+            var checkFlag = () => {
+                if(!token){
+                    token = prompt("输入token")
+                }
+                this.page = parseInt(window.location.hash.replace('#', ''))
+                if (Number.isNaN(this.page)) {
+                    window.location.href = "#1"
+                    return
+                }
+                this.date = (new Date(this.page*1000)).toString()
+                axios.get('/flag', {
+                    params: {
+                        token: token,
+                        page: this.page
+                    }
+                }).then((response)=>{
+                    this.flag = response.data
+                }).catch((error)=>{
+
+                })
+            }
+            window.onhashchange = checkFlag
+            checkFlag()
+        }
+    })
+</script>
+</body>
+</html>
