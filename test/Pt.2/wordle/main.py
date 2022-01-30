@@ -27,7 +27,6 @@ def init_words_list():
     for w in f.readlines():
         words_list.append(w.strip().upper())
     f.close()
-    random.shuffle(words_list)
 
 def get_new_word():
     global word_id, words_list
