@@ -1,7 +1,7 @@
 <template>
   <div class="user">
     <figure class="image is-48x48">
-      <img class="is-rounded" :src="avatar">
+      <img style="max-height: none;" class="is-rounded" :src="avatar">
     </figure>
     <span>{{ userName }}</span>
   </div>

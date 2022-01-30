@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
-axios.defaults.baseURL = "http://49.234.211.217:1145/"
+axios.defaults.baseURL = "//2022.hello.shishengstore.com"
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(function (response) {
     if (response.data.code !== 200 && response.data.code !== -10) {

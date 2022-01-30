@@ -157,4 +157,8 @@ export default {
 .notice {
   margin: 0 20px;
 }
+
+.media-content{
+  overflow-x:unset !important;
+}
 </style>

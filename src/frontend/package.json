@@ -10,6 +10,7 @@
     "axios": "^0.24.0",
     "babel-runtime": "^6.26.0",
     "buefy": "^0.9.13",
+    "clipboard": "^2.0.9",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",

@@ -26,7 +26,7 @@
           </b-tooltip>
 
 
-          <b-button type="is-light"
+          <b-button v-if="!isLogin" type="is-light"
                     icon-left="github" @click="clickButton">
             Login with Github
           </b-button>
@@ -107,4 +107,5 @@ export default {
 .navbar {
   margin-bottom: 30px;
 }
+
 </style>
