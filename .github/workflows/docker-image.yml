@@ -1,0 +1,16 @@
+name: Docker Image CI for Pt.0
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build ./test/Pt.0/flagserver --file Dockerfile --tag h2022/pt0:ci-$(date +%s)
