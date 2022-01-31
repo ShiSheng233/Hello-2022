@@ -3,8 +3,19 @@
 	
 	require_once('./config.php');
 	
-	$userToken = $_COOKIE['token'] || $_GET['token'] || $_POST['token'];
-	$submitFlag = $_GET['flag'] || $_POST['flag'];
+	if (!empty($_COOKIE['token'])) {
+	    $userToken = $_COOKIE['token'];
+	} elseif (!empty($_GET['token'])) {
+	    $userToken = $_GET['token'];
+	} elseif (!empty($_POST['token'])) {
+	    $userToken = $_POST['token'];
+	}
+	
+	if (!empty($_GET['flag'])) {
+	    $submitFlag = $_GET['flag'];
+	} elseif (!empty($_POST['flag'])) {
+	    $submitFlag = $_POST['flag'];
+	}
 	
 	$return = array();
 	
@@ -32,18 +43,33 @@
 		die(json_encode($return));
 	}
 	
-	$db->where('flag', $submitFlag);
-	$subjectData = $db->getOne('subjects');
-	
-	if (!$subjectData) {
-		$return['msg']  = '不存在该 Flag！';
-		$return['code'] = -40;
-		
-		die(json_encode($return));
+	// 为 Pt0 而做的单独的判断分支
+	$userFlag = getSubstr($submitFlag, 'flag{', '}');
+	if ($userFlag == hash_hmac('sha256', $userToken, 'ecb20a14-be19-af4f-1a4e-f091b2427096')) {
+	    $db->where('id', 1);
+	    $subjectData = $db->getOne('subjects');
+	    
+	    if (!$subjectData) {
+    		$return['msg']  = '服务器错误！';
+    		$return['code'] = -100;
+    		
+    		die(json_encode($return));
+    	}
+    	
+	} else {
+    	$db->where('flag', $submitFlag);
+    	$subjectData = $db->getOne('subjects');
+    	
+    	if (!$subjectData) {
+    		$return['msg']  = '不存在该 Flag！';
+    		$return['code'] = -40;
+    		
+    		die(json_encode($return));
+    	}
 	}
 	
 	$userData['finishedSubject'] = json_decode($userData['finishedSubject'], true);
-	if (in_array($subjectData['id'], $userData['finishedSubject'])) {
+	if ($userData['finishedSubject'] && is_array($userData['finishedSubject']) && in_array($subjectData['id'], $userData['finishedSubject'])) {
 		$return['msg']  = '您已提交该题目！';
 		$return['code'] = -50;
 		
@@ -67,4 +93,12 @@
 		
 		die(json_encode($return));
 	}
+	
+	function getSubstr($str, $leftStr, $rightStr) {
+        $left = strpos($str, $leftStr);
+        $right = strpos($str, $rightStr,$left);
+        
+        if($left < 0 or $right < $left) return '';
+        return substr($str, $left + strlen($leftStr), $right-$left-strlen($leftStr));
+    }
 ?>

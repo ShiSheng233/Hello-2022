@@ -15,8 +15,13 @@
 		for ($i = 0; $i < count($preg); $i++) {
 			foreach ($_INPUT_DATA as $x => $_array) {
 				if (preg_match($preg[$i], $_array)) {
-					header('Location: http://' . $_SERVER['HTTP_HOST'] . '/error.html');
-					die();
+					die(json_encode(
+					        array(
+					            'code' => -999,
+					            'msg'  => '你这个调皮的小淘气！'
+					        )
+					    )
+					);
 				}
 			}
 		}

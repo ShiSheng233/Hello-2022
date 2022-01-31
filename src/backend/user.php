@@ -81,7 +81,7 @@
 				$user['userId']    = $userInfo['id'];
 				$user['userName']  = $userInfo['login'];
 				$user['userPic']   = $userInfo['avatar_url'];
-				$user['userToken'] = base64_encode(RC4('ShishengIsRBQ', $userInfo['id'] . $userInfo['login'] . $userInfo['node_id'] . $_SESSION['userRand']));
+				$user['userToken'] = base64_encode(RC4('LinesoftIsRBQ', $userInfo['id'] . $userInfo['login'] . $userInfo['node_id'] . $_SESSION['userRand']));
 				
 				if (!$db->insert('users', $user)) {
 					die('写入数据库失败了=_=||');
@@ -90,7 +90,7 @@
 			
 			// 这里应该是 301 到首页
 			echo '你好，' . $user['userName'] . '，欢迎登录！';
-			header('Location: http://49.234.211.217:1145');
+			header('Location: https://2022.hello.shishengstore.com');
 			setCookie('token', $user['userToken']);
 			
 		} else {
