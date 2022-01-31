@@ -80,7 +80,7 @@
         {% autoescape false %}
         <div class="flag_msg">{{ msg }}</div>
         {% endautoescape %}
-        <div class="flag_msg">Next word: {{ next_word }}</div>
+        <div class="flag_msg">Next word: <span id="next_word_time"></span> </div>
         <div id="guess_result">
             <table id="guess">
                 {% for row in guess_rows %}
@@ -132,6 +132,10 @@
         </table>
 
     </div>
+    <script>
+    document.getElementById("next_word_time").innerText = new Date("{{next_word}}").toLocaleString();
+    </script>
 </body>
 <!-- Flask is good! -->
+
 </html>

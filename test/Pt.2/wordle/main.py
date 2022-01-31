@@ -4,6 +4,7 @@
 import os
 import random
 import datetime
+import pytz
 
 from threading import Timer
 from flask import Flask, request, abort, g, jsonify, session, render_template, redirect
@@ -16,6 +17,8 @@ app.permanent_session_lifetime = datetime.timedelta(days=30)
 
 # the flag
 flag = 'flag{th3_b1tc0in_1s_a_lie}'
+
+utc_tz = pytz.timezone('UTC')
 
 word_id = -1
 words_list = list()
@@ -34,7 +37,7 @@ def get_new_word():
     word_id %= len(words_list)
     global t, next_word_time
     # update after 10 minutes
-    next_word_time = datetime.datetime.now() + datetime.timedelta(minutes=10)
+    next_word_time = datetime.datetime.now(tz=utc_tz) + datetime.timedelta(minutes=10)
     t = Timer(10*60, get_new_word)
     t.start()
 
@@ -69,7 +72,7 @@ def query():
     global flag, word_id
     # new user
     if 'reg' not in session:
-        session['reg'] = datetime.datetime.now().timestamp()
+        session['reg'] = datetime.datetime.now(tz=utc_tz).timestamp()
         session['level'] = 0
     
     # word was updated
@@ -100,7 +103,7 @@ def query():
         msg = 'Level: ' + str(session.get('level', 0))
 
     return render_template('index.html', 
-                            next_word = next_word_time.strftime("%Y-%m-%d %H:%M:%S"),
+                            next_word = next_word_time.isoformat(),
                             guess_cnt = guess_cnt, 
                             is_guessed = is_guessed, 
                             msg = msg, 
