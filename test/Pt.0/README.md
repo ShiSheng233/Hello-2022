@@ -2,7 +2,7 @@
 
 ## 描述
 
-前端实现: HIMlaoS_Misa
+前端实现: 双霖 HIMlaoS_Misa
 
 后端实现: 秋のかえで
 
