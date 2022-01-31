@@ -16,6 +16,6 @@
 
 但是 Flask 在生成 session 之后会对其进行签名，如果只修改了数据，就会导致校验不通过。
 
-我们可以使用 [Flask-Unsign](https://github.com/Paradoxis/Flask-Unsign) 来破解 `secret_key`，最终会得到 `secret_key` 为 `123456`
+我们可以使用 [Flask-Unsign](https://github.com/Paradoxis/Flask-Unsign) 来破解 `secret_key`，最终会得到 `secret_key` 为 `YOUR_SECRET_KEY_HERE`
 
 使用这个 `secret_key` 来签名修改后的 `session`，并将其发送到服务器，可以得到 `flag{th3_b1tc0in_1s_a_lie}`

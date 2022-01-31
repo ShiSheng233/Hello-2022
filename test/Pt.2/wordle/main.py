@@ -12,7 +12,7 @@ from flask import Flask, request, abort, g, jsonify, session, render_template, r
 app = Flask(__name__)
 
 # 一个简单的，能被 https://github.com/Paradoxis/Flask-Unsign 爆破的key
-app.secret_key = '123456'
+app.secret_key = 'YOUR_SECRET_KEY_HERE'
 app.permanent_session_lifetime = datetime.timedelta(days=30)
 
 # the flag
