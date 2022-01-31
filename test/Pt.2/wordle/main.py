@@ -24,6 +24,11 @@ word_id = -1
 words_list = list()
 next_word_time = 0
 
+def calc_time_round(dt, step=0):
+    td = datetime.timedelta(days=0, seconds=dt.second, microseconds=dt.microsecond, milliseconds=0, minutes=-step, hours=0, weeks=0)
+    new_dt = dt - td
+    return new_dt
+
 def init_words_list():
     global words_list
     f = open('words.txt', 'r')
@@ -37,9 +42,10 @@ def get_new_word():
     word_id %= len(words_list)
     global t, next_word_time
     # update after 10 minutes
-    next_word_time = datetime.datetime.now(tz=utc_tz) + datetime.timedelta(minutes=10)
-    t = Timer(10*60, get_new_word)
+    next_word_time = calc_time_round(datetime.datetime.now(tz=utc_tz), 10)
+    t = Timer(next_word_time.timestamp() - datetime.datetime.now(tz=utc_tz).timestamp(), get_new_word)
     t.start()
+    print("qwq", next_word_time.timestamp())
 
 @app.before_request
 def make_session_permanent():
