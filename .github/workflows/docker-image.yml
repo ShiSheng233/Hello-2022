@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build ./test/Pt.0/flagserver --file Dockerfile --tag h2022/pt0:ci-$(date +%s)
+      run: docker build .r --file /test/Pt.0/flagserve/Dockerfile --tag h2022/pt0:ci-$(date +%s)
