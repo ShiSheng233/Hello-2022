@@ -1,80 +1,67 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Flag 记录集</title>
-		<!-- MDUI CSS -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
-			integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
-			crossorigin="anonymous"
-		/>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FLAG 记录集</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-		<!-- MDUI JavaScript -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
-			integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
-			crossorigin="anonymous"
-		></script>
-	</head>
-	<body class="mdui-theme-accent-pink">
-		<div class="mdui-container">
-			<h1>Flag 记录集</h1>
-			<p>Page: <span id="page">?</span></p>
+</head>
+<body>
+<div id="app">
+    <h1>FLAG 记录集</h1>
+    <p>Page {{page}}</p>
+    <hr>
+    <p>时间：{{date}}</p>
+    <p v-if="flag">flag是 {{flag}}</p>
+    <p v-else>tnnd, 跟我玩阴的是吧</p>
+    <hr>
+    <a :href="'#'+(page-1)">上一页</a>
+    <a :href="'#'+(page+1)">下一页</a>
 
-			<div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
 
-			<p>时间：<span id="time">?</span></p>
-			<p id="flag">nnd, 跟我玩阴的是吧, 直 接 来 吧 ！</p>
+</div>
 
-			<div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
 
-			<a class="mdui-btn mdui-btn-raised mdui-color-theme-accent" id="pre">上一页</a>
-			<a class="mdui-btn mdui-btn-raised mdui-color-theme-accent mdui-float-right" id="next">下一页</a>
-		</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            page: 0,
+            date:"",
+            flag:""
+        },
+        mounted() {
+            var token
 
-		<script>
-			var token = null;
-			var page = 0;
+            var checkFlag = () => {
+                if(!token){
+                    token = prompt("输入token")
+                }
+                this.page = parseInt(window.location.hash.replace('#', ''))
+                if (Number.isNaN(this.page)) {
+                    window.location.href = "#1"
+                    return
+                }
+                this.date = (new Date(this.page*1000)).toString()
+                axios.get('/api/flag', {
+                    params: {
+                        token: token,
+                        page: this.page
+                    }
+                }).then((response)=>{
+                    this.flag = response.data
+                }).catch((error)=>{
 
-			function checkPage() {
-				if (!token) {
-					token = prompt('请输入 Token');
-				}
-
-				page = Number(window.location.hash.replace('#', ''));
-				if (isNaN(page)) {
-					window.location.href = '#1';
-					return;
-				}
-
-				mdui.$('#page').html(page.toString());
-				mdui.$('#time').html((new Date(page * 1000)).toString());
-
-				mdui.$('#pre').prop('href', '#' + (page - 1));
-				mdui.$('#next').prop('href', '#' + (page + 1));
-
-				mdui.$.ajax({
-					method: 'GET',
-					url: '/api/flag',
-					data: {
-						token: token,
-						page: page
-					},
-					onSuccess: (data) => {
-						let json = JSON.parse(data);
-						mdui.$('#flag').html(json.flag);
-					},
-					onError: () => {
-						mdui.$('#flag').html('nnd, 跟我玩阴的是吧, 直 接 来 吧 ！');
-					}
-				});
-			}
-
-			window.onhashchange = checkPage;
-			checkPage();
-		</script>
-	</body>
+                })
+            }
+            window.onhashchange = checkFlag
+            checkFlag()
+        }
+    })
+</script>
+</body>
 </html>
