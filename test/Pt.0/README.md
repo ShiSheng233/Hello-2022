@@ -46,13 +46,11 @@
 
 催逝员 Misa 倒地了, 醒来后发现自己被锁在监狱中, 监狱门由一个计算机控制, 上面打开了这个网站
 
-<https://whatever>
+<http://106.55.51.231:5274>
 
-获取到 flag 才能救出催逝员 Misa , 那你能帮帮他吗
+据说只有游戏进行期间才能拿到 flag , 不然 Misa 会被永久地关在这里
 
-`flag = HmacSha256(secret, token)`
-
-`HmacSha256(K, M) = SHA256(K⊕opad∣SHA256(K⊕ipad∣M))`
+但只有获取到 flag 才能救出催逝员 Misa , 那你能帮帮他吗
 
 ---
 
