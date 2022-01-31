@@ -5,14 +5,16 @@ import store from './store'
 import axios from 'axios'
 
 axios.defaults.baseURL = "//2022.hello.shishengstore.com"
+//axios.defaults.baseURL = "http://49.234.211.217:1145"
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(function (response) {
-    if (response.data.code !== 200 && response.data.code !== -10) {
+    if (response.data.code !== 200 && (response.data.code !== -10 && response.request.responseURL.indexOf("user.php")!==-1) ) {
         vue.$buefy.toast.open({
             duration: 5000,
             message: '错误：' + response.data.msg,
             type: 'is-danger'
         })
+        throw new Error(response.data.msg)
     }
     return response;
 }, function (error) {
