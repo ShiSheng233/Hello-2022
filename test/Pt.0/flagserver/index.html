@@ -38,6 +38,7 @@
             var token
 
             var checkFlag = () => {
+				this.flag = ""
                 if(!token){
                     token = prompt("输入token")
                 }
@@ -53,7 +54,7 @@
                         page: this.page
                     }
                 }).then((response)=>{
-                    this.flag = response.data
+                    this.flag = response.data.flag
                 }).catch((error)=>{
 
                 })
