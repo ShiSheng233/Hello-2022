@@ -81,7 +81,7 @@
 				$user['userId']    = $userInfo['id'];
 				$user['userName']  = $userInfo['login'];
 				$user['userPic']   = $userInfo['avatar_url'];
-				$user['userToken'] = base64_encode(RC4('LinesoftIsRBQ', $userInfo['id'] . $userInfo['login'] . $userInfo['node_id'] . $_SESSION['userRand']));
+				$user['userToken'] = base64_encode(RC4('ShishengIsRBQ', $userInfo['id'] . $userInfo['login'] . $userInfo['node_id'] . $_SESSION['userRand']));
 				
 				if (!$db->insert('users', $user)) {
 					die('写入数据库失败了=_=||');
